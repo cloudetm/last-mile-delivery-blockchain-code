@@ -1,0 +1,53 @@
+/**
+ * Write your model definitions here
+ */
+
+namespace delivery
+
+abstract participant ProductHolder identified by holderId {
+  o String holderId
+}
+
+participant Warehouse extends ProductHolder {
+  o String location
+}
+
+participant Transporter extends  ProductHolder {
+
+}
+
+participant Courier extends ProductHolder{
+
+}
+participant Customer extends ProductHolder{
+
+}
+asset Product identified by productId {
+  o String productId
+  o String productStatus
+  --> ProductHolder productHolder
+}
+
+transaction SendToTransporter {
+  --> Product product
+  --> Transporter transporter
+}
+
+transaction SendToWarehouse {
+  --> Product product
+  --> Warehouse warehouse
+}
+
+transaction SendToCourier {
+  --> Product product
+  --> Courier courier
+}
+
+transaction SendToCustomer {
+  --> Product product
+  --> Customer customer
+}
+
+transaction RecieveProduct {
+  --> Product product
+}

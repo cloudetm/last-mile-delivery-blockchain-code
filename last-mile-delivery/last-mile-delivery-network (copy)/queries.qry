@@ -1,0 +1,16 @@
+/**Queries for Searching network*/
+
+query viewProductswithProductHolder {
+  description: "View all products in a warehouse"
+  statement:
+    SELECT delivery.Product
+      WHERE (productHolder.holderId == _$holderId)
+}
+
+query viewWarehousesatlocation {
+  description: "View all warehouses at a location"
+  statement:
+    SELECT delivery.Warehouse
+      WHERE (location == _$location)
+}
+
