@@ -1,10 +1,10 @@
 /**Queries for Searching network*/
 
 query viewProductswithProductHolder {
-  description: "View all products in a warehouse"
+  description: "View all products with a holder"
   statement:
     SELECT delivery.Product
-      WHERE (productHolder == _$holderId)
+      WHERE (productHolder == _$holder)
 }
 
 query viewWarehousesatlocation {
@@ -18,5 +18,33 @@ query viewProductTransactionHistory {
   description: "Select all transactions for a product"
   statement:
     SELECT delivery.ProductHistory
-      WHERE (Id == _$productId)
+      WHERE (historyId == _$productId)
+}
+
+query viewTransporterTransactionHistory {
+  description: "See all transactions for a Transporter"
+  statement:
+    SELECT delivery.TransporterHistory
+     WHERE (historyId == _$TransporterId)
+}
+
+query viewWarehouseTransactionHistory {
+  description: "See all transactions for a Warehouse"
+  statement:
+    SELECT delivery.WarehouseHistory
+     WHERE (historyId == _$WarehouseId)
+}
+
+query viewCourierTransactionHistory {
+  description: "See all transactions for a Courier"
+  statement:
+    SELECT delivery.CourierHistory
+     WHERE (historyId == _$CourierId)
+}
+
+query viewCustomerTransactionHistory {
+  description: "See all transactions for a Customer"
+  statement:
+    SELECT delivery.CustomerHistory
+     WHERE (historyId == _$CustomerId)
 }

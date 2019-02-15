@@ -7,48 +7,24 @@ namespace delivery
 abstract participant ProductHolder identified by holderId {
   o String holderId
 }
-abstract asset History identified by historyId {
-  o String historyId
-  o TimeStatus[] history
-}
-concept TimeStatus {
-  o String time
-  o String status
-}
-
 
 participant Warehouse extends ProductHolder {
   o String location
 }
-asset WarehouseHistory extends History{
-}
-transaction CreateWarehouse {
-  o String holderId
-  o String location
-}
 
 participant Transporter extends  ProductHolder {
-}
-asset TransporterHistory extends History{
-}
-transaction CreateTransporter {
-  o String holderId
+
 }
 
 participant Courier extends ProductHolder{
-}
-asset CourierHistory extends History{
-}
-transaction CreateCourier {
-  o String holderId
-}
 
+}
 participant Customer extends ProductHolder{
+
 }
-asset CustomerHistory extends History{
-}
-transaction CreateCustomer {
-  o String holderId
+concept TimeStatus {
+  o String time
+  o String status
 }
 
 asset Product identified by productId {
@@ -56,42 +32,44 @@ asset Product identified by productId {
   o String productStatus
   --> ProductHolder productHolder
 }
-asset ProductHistory extends History{
+
+asset ProductHistory identified by Id{
+  o String Id
+  o TimeStatus[] productHistory
 }
-transaction CreateProduct {
+
+transaction CreateProuduct {
   o String productId
   --> ProductHolder holder
-  --> History holderHistory
 }
 
 transaction SendToTransporter {
   --> Product product
   --> ProductHistory productHistory
   --> Transporter transporter
-  --> History currentHolderHistory
 }
+
 transaction SendToWarehouse {
   --> Product product
   --> ProductHistory productHistory
   --> Warehouse warehouse
-  --> History currentHolderHistory
 }
+
 transaction SendToCourier {
   --> Product product
   --> ProductHistory productHistory
   --> Courier courier
-  --> History currentHolderHistory
 }
+
 transaction SendToCustomer {
   --> Product product
   --> ProductHistory productHistory
   --> Customer customer
-  --> History currentHolderHistory
 }
+
 transaction RecieveProduct {
   --> Product product
   --> ProductHistory productHistory
-  --> History recieverHistory
 }
 
 
