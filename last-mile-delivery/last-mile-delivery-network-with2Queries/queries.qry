@@ -4,7 +4,7 @@ query viewProductswithProductHolder {
   description: "View all products in a warehouse"
   statement:
     SELECT delivery.Product
-      WHERE (productHolder.holderId == _$holderId)
+      WHERE (productHolder == _$holderId)
 }
 
 query viewWarehousesatlocation {

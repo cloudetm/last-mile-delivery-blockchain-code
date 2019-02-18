@@ -16,6 +16,10 @@ concept TimeStatus {
   o String status
 }
 
+concept TimeStatusLocation extends TimeStatus{
+  o String latitude
+  o String longitude
+}
 
 participant Warehouse extends ProductHolder {
   o String location
@@ -55,13 +59,19 @@ asset Product identified by productId {
   o String productId
   o String productStatus
   --> ProductHolder productHolder
+  o String latitude
+  o String longitude
 }
-asset ProductHistory extends History{
+asset ProductHistory identified by historyId{
+  o String historyId
+  o TimeStatusLocation[] history
 }
 transaction CreateProduct {
   o String productId
   --> ProductHolder holder
   --> History holderHistory
+  o String latitude
+  o String longitude
 }
 
 transaction SendToTransporter {
@@ -69,29 +79,38 @@ transaction SendToTransporter {
   --> ProductHistory productHistory
   --> Transporter transporter
   --> History currentHolderHistory
+  o String latitude
+  o String longitude
 }
 transaction SendToWarehouse {
   --> Product product
   --> ProductHistory productHistory
   --> Warehouse warehouse
   --> History currentHolderHistory
+  o String latitude
+  o String longitude
 }
 transaction SendToCourier {
   --> Product product
   --> ProductHistory productHistory
   --> Courier courier
   --> History currentHolderHistory
+  o String latitude
+  o String longitude
 }
 transaction SendToCustomer {
   --> Product product
   --> ProductHistory productHistory
   --> Customer customer
   --> History currentHolderHistory
+  o String latitude
+  o String longitude
 }
 transaction RecieveProduct {
   --> Product product
   --> ProductHistory productHistory
   --> History recieverHistory
+  --> ProductHolder receiver
 }
 
 

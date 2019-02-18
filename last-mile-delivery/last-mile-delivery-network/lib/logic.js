@@ -145,26 +145,35 @@ function CreateCustomer(tx){
  */
 function CreateProduct(tx){
     var productId = tx.productId
+    var latitude = tx.latitude
+    var longitude = tx.longitude
     var holder = tx.holder
     var holderHistory = tx.holderHistory
     var fqAssetName = "delivery." + tx.holderHistory.$type
 
-    var factory1 = getFactory()
-
-    var timeStatus = factory1.newConcept('delivery','TimeStatus')
+    var factory0 = getFactory()
+    var timeStatus = factory0.newConcept('delivery','TimeStatus')
     timeStatus.time = Date(0)
     timeStatus.status = "Product " + productId +" reached to " + holder.holderId
 
-    var factory2 = getFactory()
+    var factory1 = getFactory()
+    var timeStatusLocation = factory1.newConcept('delivery','TimeStatusLocation')
+    timeStatusLocation.time = Date(0)
+    timeStatusLocation.status = "Product " + productId +" reached to " + holder.holderId
+    timeStatusLocation.latitude = latitude
+    timeStatusLocation.longitude = longitude
 
+    var factory2 = getFactory()
     var product = factory2.newResource('delivery','Product',productId)
     product.productStatus = "Product " + productId +" reached to " + holder.holderId
     product.productHolder = factory2.newRelationship('delivery','ProductHolder',holder.$identifier)
+    product.latitude = latitude
+    product.longitude = longitude
 
     var factory3 = getFactory()
     var productHistory = factory3.newResource('delivery','ProductHistory',productId)
     productHistory.history = []
-  	productHistory.history.push(timeStatus)    
+    productHistory.history.push(timeStatusLocation)
     
     holderHistory.history.push(timeStatus)
 
@@ -202,6 +211,8 @@ function CreateProduct(tx){
  */
 function SendtoTransporter(tx) {
     var product = tx.product
+    var latitude = tx.latitude
+    var longitude = tx.longitude
     var productHistory = tx.productHistory
     var transporter = tx.transporter
     var currentHolderHistory = tx.currentHolderHistory
@@ -211,11 +222,20 @@ function SendtoTransporter(tx) {
     var timeStatus = factory.newConcept('delivery','TimeStatus')
     timeStatus.time = Date(0)
     timeStatus.status = product.productId + " sent to transporter " + transporter.holderId
+
+    var factory1 = getFactory()
+    var timeStatusLocation = factory1.newConcept('delivery','TimeStatusLocation')
+    timeStatusLocation.time = Date(0)
+    timeStatusLocation.status = product.productId + " sent to transporter " + transporter.holderId
+    timeStatusLocation.latitude = latitude
+    timeStatusLocation.longitude = longitude
     
     product.productHolder = transporter
     product.productStatus = "sent to transporter " + transporter.holderId
+    product.latitude = latitude
+    product.longitude = longitude
 
-    productHistory.history.push(timeStatus)
+    productHistory.history.push(timeStatusLocation)
 
     currentHolderHistory.history.push(timeStatus)
 
@@ -239,6 +259,8 @@ function SendtoTransporter(tx) {
  */
 function SendtoWarehouse(tx) {
     var product = tx.product
+    var latitude = tx.latitude
+    var longitude = tx.longitude
     var warehouse = tx.warehouse
     var productHistory = tx.productHistory
     var currentHolderHistory = tx.currentHolderHistory
@@ -248,11 +270,20 @@ function SendtoWarehouse(tx) {
     var timeStatus = factory.newConcept('delivery','TimeStatus')
     timeStatus.time = Date(0)
     timeStatus.status = product.productId + " sent to warehouse " + warehouse.holderId
-    
-    product.productHolder = transporter
-    product.productStatus = "sent to warehouse " + warehouse.holderId
 
-    productHistory.history.push(timeStatus)
+    var factory1 = getFactory()
+    var timeStatusLocation = factory1.newConcept('delivery','TimeStatusLocation')
+    timeStatusLocation.time = Date(0)
+    timeStatusLocation.status = product.productId + " sent to warehouse " + warehouse.holderId
+    timeStatusLocation.latitude = latitude
+    timeStatusLocation.longitude = longitude
+    
+    product.productHolder = warehouse
+    product.productStatus = "sent to warehouse " + warehouse.holderId
+    product.latitude = latitude
+    product.longitude = longitude
+
+    productHistory.history.push(timeStatusLocation)
 
     currentHolderHistory.history.push(timeStatus)
 
@@ -277,6 +308,8 @@ function SendtoWarehouse(tx) {
  */
 function SendtoCourier(tx) {
     var product = tx.product
+    var latitude = tx.latitude
+    var longitude = tx.longitude
     var courier = tx.courier
     var productHistory = tx.productHistory
     var currentHolderHistory = tx.currentHolderHistory
@@ -286,11 +319,20 @@ function SendtoCourier(tx) {
     var timeStatus = factory.newConcept('delivery','TimeStatus')
     timeStatus.time = Date(0)
     timeStatus.status = product.productId + " sent to courier " + courier.holderId
+
+    var factory1 = getFactory()
+    var timeStatusLocation = factory1.newConcept('delivery','TimeStatusLocation')
+    timeStatusLocation.time = Date(0)
+    timeStatusLocation.status = product.productId + " sent to courier " + courier.holderId
+    timeStatusLocation.latitude = latitude
+    timeStatusLocation.longitude = longitude
     
     product.productHolder = courier
     product.productStatus = "sent to courier " + courier.holderId
+    product.latitude = latitude
+    product.longitude = longitude
 
-    productHistory.history.push(timeStatus)
+    productHistory.history.push(timeStatusLocation)
 
     currentHolderHistory.history.push(timeStatus)
 
@@ -315,6 +357,8 @@ function SendtoCourier(tx) {
  */
 function SendtoCustomer(tx) {
     var product = tx.product
+    var latitude = tx.latitude
+    var longitude = tx.longitude
     var customer = tx.customer
     var productHistory = tx.productHistory
     var currentHolderHistory = tx.currentHolderHistory
@@ -324,11 +368,20 @@ function SendtoCustomer(tx) {
     var timeStatus = factory.newConcept('delivery','TimeStatus')
     timeStatus.time = Date(0)
     timeStatus.status = product.productId + " sent to customer " + customer.holderId
+
+    var factory1 = getFactory()
+    var timeStatusLocation = factory1.newConcept('delivery','TimeStatusLocation')
+    timeStatusLocation.time = Date(0)
+    timeStatusLocation.status = product.productId + " sent to customer " + customer.holderId
+    timeStatusLocation.latitude = latitude
+    timeStatusLocation.longitude = longitude
     
     product.productHolder = customer
     product.productStatus = "sent to customer " + customer.holderId
+    product.latitude = latitude
+    product.longitude = longitude
 
-    productHistory.history.push(timeStatus)
+    productHistory.history.push(timeStatusLocation)
 
     currentHolderHistory.history.push(timeStatus)
 
@@ -353,18 +406,30 @@ function SendtoCustomer(tx) {
  */
 function RecieveProducts (tx){
     var product = tx.product
+    var receiver = tx.receiver
     var productHistory = tx.productHistory
     var recieverHistory = tx.recieverHistory
     var fqAssetName = "delivery." + tx.recieverHistory.$type
+
+    if (product.productHolder != receiver){
+        throw new Error('Product is not with the this holder')
+    }
 
     var factory = getFactory()
     var timeStatus = factory.newConcept('delivery','TimeStatus')
     timeStatus.time = Date(0)
     timeStatus.status = product.productId + " received by " + product.productHolder.holderId
-    
+
+    var factory1 = getFactory()
+    var timeStatusLocation = factory1.newConcept('delivery','TimeStatusLocation')
+    timeStatusLocation.time = Date(0)
+    timeStatusLocation.status = product.productId + " received by " + product.productHolder.holderId
+    timeStatusLocation.latitude = product.latitude
+    timeStatusLocation.longitude = product.longitude
+
     product.productStatus = "Recieved by " + product.productHolder.holderId
 
-    productHistory.history.push(timeStatus)
+    productHistory.history.push(timeStatusLocation)
 
     recieverHistory.history.push(timeStatus)
 
@@ -379,5 +444,6 @@ function RecieveProducts (tx){
         .then(getAssetRegistry(fqAssetName)
         .then(function(assetRegistry){
             return assetRegistry.update(recieverHistory)
-        })) 
+        }))
+    
     }

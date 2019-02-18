@@ -60,7 +60,7 @@ function SendtoCourier(tx) {
  */
 function SendtoCustomer(tx) {
     var product = tx.product
-    var courier = tx.customer
+    var customer = tx.customer
 
     product.productHolder = customer
     product.productStatus = "Delivered to Customer " + customer.holderId
