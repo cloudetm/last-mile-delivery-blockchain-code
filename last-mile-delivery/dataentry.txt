@@ -1,0 +1,193 @@
+{
+  "$class": "delivery.Warehouse",
+  "userId":11,
+  "name": "Ajmer Warehouse",
+  "address": "Bhagwan Adinath Marg, Kaiser Ganj Rd, Parao, Ajmer, Rajasthan 305001",
+  "latitude":26.4486874,
+  "longitude":74.6335015,
+  "number":"9876543210L",
+  "holderId": "WarehouseAjmer"
+}
+
+{
+  "$class": "delivery.Order",
+  "holder": "resource:delivery.Warehouse#WarehouseGurgaon",
+  "orderId": "OrderAjmer1",
+  "Pincode": "305001",
+  "buyerRegion": "North",
+  "buyerState": "Rajasthan",
+  "orderNo": "ORD000AJ1",
+  "StatusId": 2,
+  "orderDateTime": "122343",
+  "orderLocationLat": 26.456118,
+  "orderLocationLng": 74.6260124,
+  "orderLocationAddress": "",
+  "description": "This is a sample order",
+  "qrCodeText": "q6",
+  "buyerName": "ExxonMobil",
+  "buyerAddress": "111, Faiz Manzil, Nathwan Shah, Dargah Sharif, Khadim Mohalla, Ajmer, Rajasthan 305001",
+  "shipperName": "Jay Electronics",
+  "shipperAddress": "",
+  "sellerCity": "Gurugram, Hariyana",
+  "buyerCity": "Ajmer",
+  "sellerAddress": "Ground Floor & Basement, SCO No. 18, Sector 10A, Khandsa Road, Gurugram, Haryana 122001",
+  "sellerLocationLng": 24.5854,
+  "sellerLocationLat":73.7125,
+  "shippingService": "Standard",
+  "contactNo": "9876543210",
+  "currentLocationReached": "North Warehouse"
+},
+{
+  "$class": "delivery.Order",
+  "holder": "resource:delivery.Warehouse#WarehouseGurgaon",
+  "orderId": "OrderAjmer2",
+  "Pincode": "305001",
+  "buyerRegion": "North",
+  "buyerState": "Rajasthan",
+  "orderNo": "ORD000AJ2",
+  "StatusId": 2,
+  "orderDateTime": "122343",
+  "orderLocationLat": 26.456118,
+  "orderLocationLng": 74.6260124,
+  "orderLocationAddress": "",
+  "description": "This is a sample order",
+  "qrCodeText": "q7",
+  "buyerName": "ExxonMobil",
+  "buyerAddress": "111, Faiz Manzil, Nathwan Shah, Dargah Sharif, Khadim Mohalla, Ajmer, Rajasthan 305001",
+  "shipperName": "Jay Electronics",
+  "shipperAddress": "",
+  "sellerCity": "Gurugram, Hariyana",
+  "buyerCity": "Ajmer",
+  "sellerAddress": "Ground Floor & Basement, SCO No. 18, Sector 10A, Khandsa Road, Gurugram, Haryana 122001",
+  "sellerLocationLng": 24.5854,
+  "sellerLocationLat":73.7125,
+  "shippingService": "Standard",
+  "contactNo": "9876543210",
+  "currentLocationReached": "North Warehouse"
+}
+
+{
+  "$class": "delivery.Order",
+  "holder": "resource:delivery.Warehouse#WarehouseGurgaon",
+  "orderId": "OrderJaipur1",
+  "Pincode": "302002",
+  "buyerRegion": "North",
+  "buyerState": "Rajasthan",
+  "orderNo": "ORD000JP1",
+  "StatusId": 2,
+  "orderDateTime": "122343",
+  "orderLocationLat": 26.456118,
+  "orderLocationLng": 74.6260124,
+  "orderLocationAddress": "38/6, Delhi - Jaipur Expy, Mohammed Pur, Khandsha, Sector 37, Gurugram, Haryana 122004",
+  "description": "This is a sample order",
+  "qrCodeText": "q1",
+  "buyerName": "CVS Health",
+  "buyerAddress": "Sri Krishna Service Station Amer Road Inside Hpcl, Opp Jal Mahal & Man Sagar Lake, Parasrampuri, Jaipur, Rajasthan 302002",
+  "shipperName": "Jay Electronics",
+  "shipperAddress": "",
+  "sellerCity": "Gurugram, Hariyana",
+  "buyerCity": "Ajmer",
+  "sellerAddress": "Ground Floor & Basement, SCO No. 18, Sector 10A, Khandsa Road, Gurugram, Haryana 122001",
+  "sellerLocationLng": 24.5854,
+  "sellerLocationLat":73.7125,
+  "shippingService": "Standard",
+  "contactNo": "9876543210",
+  "currentLocationReached": "North Warehouse"
+}
+{
+  "$class": "delivery.Order",
+  "holder": "resource:delivery.Warehouse#WarehouseGurgaon",
+  "orderId": "OrderJaipur2",
+  "Pincode": "302002",
+  "buyerRegion": "North",
+  "buyerState": "Rajasthan",
+  "orderNo": "ORD000JP2",
+  "StatusId": 2,
+  "orderDateTime": "122343",
+  "orderLocationLat": 26.456118,
+  "orderLocationLng": 74.6260124,
+  "orderLocationAddress": "",
+  "description": "This is a sample order",
+  "qrCodeText": "q1",
+  "buyerName": "CVS Health",
+  "buyerAddress": "Sri Krishna Service Station Amer Road Inside Hpcl, Opp Jal Mahal & Man Sagar Lake, Parasrampuri, Jaipur, Rajasthan 302002",
+  "shipperName": "Jay Electronics",
+  "shipperAddress": "",
+  "sellerCity": "Gurugram, Hariyana",
+  "buyerCity": "Ajmer",
+  "sellerAddress": "Ground Floor & Basement, SCO No. 18, Sector 10A, Khandsa Road, Gurugram, Haryana 122001",
+  "sellerLocationLng": 24.5854,
+  "sellerLocationLat":73.7125,
+  "shippingService": "Standard",
+  "contactNo": "9876543210",
+  "currentLocationReached": "North Warehouse"
+}
+{
+  "$class": "delivery.Order",
+  "holder": "resource:delivery.Warehouse#WarehouseGurgaon",
+  "orderId": "OrderJaipur3",
+  "Pincode": "302002",
+  "buyerRegion": "North",
+  "buyerState": "Rajasthan",
+  "orderNo": "ORD000JP3",
+  "StatusId": 2,
+  "orderDateTime": "122343",
+  "orderLocationLat": 26.456118,
+  "orderLocationLng": 74.6260124,
+  "orderLocationAddress": "",
+  "description": "This is a sample order",
+  "qrCodeText": "q1",
+  "buyerName": "CVS Health",
+  "buyerAddress": "Sri Krishna Service Station Amer Road Inside Hpcl, Opp Jal Mahal & Man Sagar Lake, Parasrampuri, Jaipur, Rajasthan 302002",
+  "shipperName": "Jay Electronics",
+  "shipperAddress": "",
+  "sellerCity": "Gurugram, Hariyana",
+  "buyerCity": "Ajmer",
+  "sellerAddress": "Ground Floor & Basement, SCO No. 18, Sector 10A, Khandsa Road, Gurugram, Haryana 122001",
+  "sellerLocationLng": 24.5854,
+  "sellerLocationLat":73.7125,
+  "shippingService": "Standard",
+  "contactNo": "9876543210",
+  "currentLocationReached": "North Warehouse"
+}
+
+{
+  "$class": "delivery.Contract",
+  "contractId": "Contract1",
+  "Pincode": "",
+  "hubs": [
+    {
+      "$class": "delivery.Address",
+      "name": "North Warehouse",
+      "address": "38/6, Delhi - Jaipur Expy, Mohammed Pur, Khandsha, Sector 37, Gurugram, Haryana 122004"
+    },
+    {
+      "$class": "delivery.Address",
+      "name": "Rajasthan Warehouse",
+      "address": "Bhawani Singh Road, Jaipur, Rajasthan 302001"
+    }
+  ]
+}
+
+{
+  "$class": "delivery.Contract",
+  "contractId": "Contract2",
+  "Pincode": "",
+  "hubs": [
+    {
+      "$class": "delivery.Address",
+      "name": "North Warehouse",
+      "address": "38/6, Delhi - Jaipur Expy, Mohammed Pur, Khandsha, Sector 37, Gurugram, Haryana 122004"
+    },
+    {
+      "$class": "delivery.Address",
+      "name": "Rajasthan Warehouse",
+      "address": "Bhawani Singh Road, Jaipur, Rajasthan 302001"
+    },
+    {
+      "$class": "delivery.Address",
+      "name": "Ajmer Warehouse",
+      "address": "Bhagwan Adinath Marg,Kaiser GanjRd,Parao,Ajmer,Rajasthan 305001"
+    }
+  ]
+}
