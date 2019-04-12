@@ -1,0 +1,60 @@
+Step One: Starting a Hyperledger Fabric network
+configuration files:
+ 1. crypto-config.yaml
+	cryptogen generate --config=./crypto-config.yaml {generates certificates and keys for network components}
+ 2. configtx.yaml
+	export FABRIC_CFG_PATH=$PWD
+	configtxgen -profile ComposerOrdererGenesis -outputBlock ./composer-genesis.block (creates a genesis.block)
+	configtxgen -profile ComposerChannel -outputCreateChannelTx ./composer-channel.tx -channelID composerchannel (creates channel config)
+
+Organizations
+	Org1 and OrgMsp
+
+
+Step Two: Building a connection profile
+	{
+	  "name": "fabric-network",
+	  "type": "hlfv1",
+	  "mspID": "Org1MSP",
+	  "peers": [
+	      {
+		  "requestURL": "grpc://localhost:7051",
+		  "eventURL": "grpc://localhost:7053"
+	      }
+	  ],
+	  "ca": {
+	      "url": "http://localhost:7054",
+	      "name": "ca.org1.example.com"
+	  },
+	  "orderers": [
+	      {
+		  "url" : "grpc://localhost:7050"
+	      }
+	  ],
+	  "channel": "composerchannel",
+	  "timeout": 300
+	}
+Step Three: Locating the certificate and private key for the Hyperledger Fabric administrator
+~/fabric-tools/fabric-scripts/hlfv1/composer/crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp
+ signcerts Admin@org1.example.com-cert.pem
+ keystore 114aab0e76bf0c78308f89efc4b8c9423e31568da0c340ca187a9b17aa9a4457_sk
+
+Step Four: Creating a business network card for the Hyperledger Fabric administrator
+
+	composer card create -p connection.json -u PeerAdmin -c Admin@org1.example.com-cert.pem -k 14aab0e76340ca187a9b17aa9a4457_sk -r PeerAdmin -r ChannelAdmin
+
+Step Five: Importing the business network card for the Hyperledger Fabric administrator
+	composer card import -f PeerAdmin@fabric-network.card
+
+Step Six: Installing the Hyperledger Composer runtime onto the Hyperledger Fabric peer nodes
+	composer runtime install -c PeerAdmin@fabric-network -n tutorial-network
+
+Step Seven: Starting the blockchain business network
+	composer network start -c PeerAdmin@fabric-network -a tutorial-network.bna -A admin -S adminpw
+
+Step Eight: Importing the business network card for the business network administrator
+	composer card import -f admin@tutorial-network.card
+
+Step Nine: Testing the connection to the blockchain business network
+	composer network ping -c admin@tutorial-network
+
